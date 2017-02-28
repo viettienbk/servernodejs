@@ -1,4 +1,8 @@
 Server đồ án tốt nghiệp
+# Install
+git clone https://github.com/viettienbk/servernodejs.git
+cd servernodejs
+npm test
 # APIs
 1. Login
     /login
