@@ -1,0 +1,19 @@
+{
+  "name": "servernodejs",
+  "version": "1.0.0",
+  "description": "this is nodejs server",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viettienbk/servernodejs.git"
+  },
+  "author": "viettienbk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viettienbk/servernodejs/issues"
+  },
+  "homepage": "https://github.com/viettienbk/servernodejs#readme"
+}
