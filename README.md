@@ -1,6 +1,9 @@
 Server đồ án tốt nghiệp
-# Pre
+# Prerequisite
+```
 - npm install -g nodemon
+```
+
 # Install
 ```
 - git clone https://github.com/viettienbk/servernodejs.git
