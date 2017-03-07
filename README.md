@@ -74,3 +74,50 @@ result:
   }
 }
 ```
+
+## Register Repairor: /repairor/register
+```
++ name: string
++ address: string
++ phoneNumer: string
+```
+
+## Get all Store: /repairor
+```
+result:
+{
+  "repairor": [
+    {
+      "_id": "58bee5cac980814d011016e3",
+      "name": "tien",
+      "address": "aaa",
+      "numberPhone": "112",
+      "type": 1,
+      "__v": 0
+    },
+    {
+      "_id": "58bee5f48b62e34d6ff2fd01",
+      "name": "tien",
+      "address": "aaa",
+      "numberPhone": "113",
+      "type": 1,
+      "__v": 0
+    }
+  ]
+}
+```
+
+## Get Repairor by Id : /repairor/:id
+```
+result:
+{
+  "repairor": {
+    "_id": "58bee5cac980814d011016e3",
+    "name": "tien",
+    "address": "aaa",
+    "numberPhone": "112",
+    "type": 1,
+    "__v": 0
+  }
+}
+```
