@@ -32,7 +32,7 @@ Server đồ án tốt nghiệp
 ```
 + name: string
 + address: string
-+ phoneNumer: string
++ numberPhone: string
 ```
 
 ## Get all Store: /store
