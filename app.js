@@ -30,6 +30,7 @@ app.use(flash());
 
 require('./app/controllers/auth')(app, passport);
 require('./app/apis/store')(app);
+require('./app/apis/repairor')(app);
 
 app.listen(port, function(err) {
     if (err) {
