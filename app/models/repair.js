@@ -2,14 +2,16 @@
 
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
-var RepairSchema = new Schema({
+var RepairSchema = new mongoose.Schema({
     name: String,
+    number_phone: String,
     address: String,
-    numberPhone: String,
-    type: Number    // 0: store 1 : people
+    latitude: Number,
+    longitude: Number,
+    type_repair: Number,
+    id_user_created: mongoose.Types.ObjectId,
+    timestamp_created: Date,
+    timestamp_updated: Date
 });
 
-var RepairMeta = mongoose.model('RepairMeta', RepairSchema);
-
-module.exports = RepairMeta;
+module.exports = mongoose.model('RepairMeta', RepairSchema);

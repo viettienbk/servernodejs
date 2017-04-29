@@ -3,17 +3,27 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs')
 
-var Schema = mongoose.Schema;
-var UserSchema = new Schema({
+var UserSchema = new mongoose.Schema({
+    fullname: String,
     email: String,
     password: String,
-    fullName: String,
+    gender: Number,
+    access_token: String,
+    image_avatar_path: String,
     age: Number,
-    numberPhone: String,
-    coordinates: {
-        latitude: Number,
-        longitude: Number
-    }
+    latitude: Number,
+    longitude: Number,
+    number_phone: String,
+    identification_before_path: String,
+    identification_after_path: String,
+    driving_license_before_path: String,
+    driving_license_after_path: String,
+    car_number_plate_path: String,
+    is_driving: Number,
+    number_favorite: Number,
+    numer_not_favorite: Number,
+    is_approved: Number,
+    is_become: Number
 });
 
 //  encrypt password
@@ -26,6 +36,4 @@ UserSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-var UserMeta = mongoose.model('UserMeta', UserSchema);
-
-module.exports = UserMeta;
+module.exports = mongoose.model('UserMeta', UserSchema);
