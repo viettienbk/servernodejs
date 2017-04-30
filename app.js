@@ -34,6 +34,7 @@ require('./app/apis/repairor')(app);
 require('./app/apis/user')(app);
 require('./app/apis/feedback')(app);
 require('./app/apis/history')(app);
+require('./app/apis/favoritebiker')(app);
 
 
 app.listen(port, function(err) {

@@ -106,4 +106,59 @@ module.exports = function(app) {
             });
         }
     });
+
+    //  become a driver
+    app.post('/users/is-driver', function(req, res) {
+        var id = req.body.id_user;
+        var is_driving = req.body.is_driving;
+
+        if (id === undefined || is_driving === undefined) {
+            res.json({ error: true, message: 'Thiếu tham số' });
+        } else {
+            User.findByIdAndUpdate(id, {
+                is_driving: is_driving
+            }, function(err, data) {
+                if (err) {
+                    res.json({ error: true, message: 'Cập nhật thông tin bị lỗi' });
+                } else {
+                    res.json({ error: false, message: 'Cập nhật thông tin thành công' });
+                }
+            });
+        }
+    });
+
+    //  update information for become driver
+    app.post('/users/become-driver', function(req, res) {
+        var id_user = req.body.id_user;
+        var identification_card_before_path = req.body.identification_card_before_path;
+        var identification_card_after_path = req.body.identification_card_after_path;
+        var driving_license_before_path = req.body.driving_license_before_path;
+        var driving_license_after_path = driving_license_after_path;
+        var car_number_plate_path = req.body.car_number_plate_path;
+        var is_become = req.body.is_become;
+
+        if (id_user === undefined || identification_card_before_path === undefined ||
+            identification_card_after_path === undefined || driving_license_before_path === undefined ||
+            driving_license_after_path === undefined || car_number_plate_path === undefined ||
+            is_become === undefined) {
+            res.json({ error: true, data: null, message: 'Thiếu tham số' });
+        } else {
+            User.findByIdAndUpdate(id, {
+                identification_card_before_path: identification_card_before_path,
+                identification_card_after_path: identification_card_after_path,
+                driving_license_before_path: identification_card_before_path,
+                driving_license_after_path: driving_license_after_path,
+                car_number_plate_path: car_number_plate_path,
+                is_become: is_become
+            }, function(err, data) {
+                if (err) {
+                    res.json({ error: true, data: null, message: 'Cập nhật thông tin bị lỗi' });
+                } else if (data === null) {
+                    res.json({ error: true, data: null, message: 'Tài khoản không tồn tại' });
+                } else {
+                    res.json({ error: false, data: data, message: 'Cập nhật thông tin thành công' });
+                }
+            });
+        }
+    });
 }
