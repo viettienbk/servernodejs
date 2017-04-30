@@ -9,7 +9,7 @@ var RepairSchema = new mongoose.Schema({
     latitude: Number,
     longitude: Number,
     type_repair: Number,
-    id_user_created: mongoose.Types.ObjectId,
+    id_user_created: mongoose.SchemaTypes.ObjectId,
     timestamp_created: Date,
     timestamp_updated: Date
 });

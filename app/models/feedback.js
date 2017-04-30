@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 var feedBackSchema = new mongoose.Schema({
-    id_user: mongoose.Types.ObjectId,
+    id_user: mongoose.Schema.Types.ObjectId,
     title: String,
     content: String
 });

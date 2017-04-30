@@ -3,8 +3,8 @@
 var mongoose = require('mongoose');
 
 var favoriteBiker = new mongoose.Schema({
-    id_user: mongoose.Types.ObjectId,
-    id_biker: mongoose.Types.ObjectId,
+    id_user: mongoose.Schema.Types.ObjectId,
+    id_biker: mongoose.Schema.Types.ObjectId,
     isFavorite: Number,
     timestamp_created: Date,
     timestamp_updated: Date

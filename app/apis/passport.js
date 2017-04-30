@@ -1,7 +1,7 @@
 'use strict'
 
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../app/models/user');
+var User = require('../models/user');
 
 module.exports = function(passport) {
 
@@ -15,55 +15,66 @@ module.exports = function(passport) {
         });
     });
 
-    passport.use('local-login', new LocalStrategy({
+    //  sign-in
+    passport.use('local-sign-in', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, email, password, done) {
+        console.log('zzz');
+        var email = req.body.email;
+        var password = req.body.password;
+
+        if (email === undefined || password === undefined) {
+            console.log('aaa');
+            return done(null, false, req.flash('message', 'Thiếu tham số'));
+        }
+
         User.findOne({ 'email': email }, function(err, user) {
             if (err) {
                 return done(err);
             }
             if (!user) {
-                console.log('Incorrect email');
-                return done(null, false, req.flash('message', 'Incorrect email'));
+                return done(null, false, req.flash('message', 'Tài khoản không tồn tại'));
             }
-            console.log(password);
             if (!user.validPassword(password)) {
-                console.log('Incorrect password');
-                return done(null, false, req.flash('message', 'Incorrect password'));
+                return done(null, false, req.flash('message', 'Sai mật khẩu'));
             }
-            console.log('success');
             return done(null, user);
         });
     }));
 
+    //  sign-up
     passport.use('local-signup', new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
     }, function(req, email, password, done) {
+        var fullname = req.body.full_name;
+        var email = req.body.email;
+        var numberphone = req.body.number_phone;
+        var password = req.body.password;
+
+        if (fullname === undefined || email === undefined || numberphone === undefined || password === undefined) {
+            return done(null, false, req.flash('message', 'Thiếu tham số'));
+        }
+
         User.findOne({ 'email': email }, function(err, user) {
-            console.log(user);
             if (err) {
                 return done(err);
             }
             if (user) {
-                console.log('User exists');
-                return done(null, false, req.flash('message', 'User exists'));
+                return done(null, false, req.flash('message', 'Người dùng đã tồn tại'));
             }
 
             var _user = new User();
-            _user.email = req.body.email;
-            _user.password = _user.generateHash(req.body.password);
-            _user.fullName = req.body.fullname;
-            _user.age = req.body.age;
-            _user.numberPhone = req.body.numberPhone;
-            _user.coordinates.latitude = req.body.latitude;
-            _user.coordinates.longitude = req.body.longitude;
+            _user.email = email;
+            _user.password = _user.generateHash(password);
+            _user.fullname = fullname;
+            _user.number_phone = numberphone;
             _user.save(function(err) {
                 if (err) {
-                    return done(null, false, req.flash('message', 'Sign up error. Try again'));
+                    return done(null, false, req.flash('message', 'Đăng kí thất bại'));
                 } else {
                     return done(null, _user);
                 }

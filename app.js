@@ -17,8 +17,6 @@ mongoose.Promise = global.Promise;
 //  mongodb
 mongoose.connect(database.durl);
 
-require('./config/passport')(passport);
-
 //  middle ware
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -28,9 +26,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./app/controllers/auth')(app, passport);
+//  api
+require('./app/apis/passport')(passport);
+require('./app/apis/auth')(app, passport);
 require('./app/apis/store')(app);
 require('./app/apis/repairor')(app);
+require('./app/apis/user')(app);
+require('./app/apis/feedback')(app);
+require('./app/apis/history')(app);
+
 
 app.listen(port, function(err) {
     if (err) {
