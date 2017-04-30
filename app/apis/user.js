@@ -161,4 +161,34 @@ module.exports = function(app) {
             });
         }
     });
+
+    //  get users by radius
+    app.post('/users/radius', function(req, res) {
+        var radius = req.body.radius;
+        var id_user = req.body.id_user;
+        var latitude = req.body.latitude;
+        var longitude = req.body.longitude;
+
+        if (radius === undefined || id_user === undefined || latitude === undefined ||
+            longitude === undefined) {
+            res.json({ error: true, data: null, message: 'Thiếu tham số' });
+        } else {
+            var result = [];
+            User.find({
+                is_driving: 1,
+                is_approved: 1
+            }, function(err, data) {
+                if (err) {
+                    res.json({ error: true, data: null, message: 'Lấy thông tin bị lỗi' });
+                } else {
+                    for (var i = 0; i < data; i++) {
+                        if (Math.sqrt(Math.pow(data[i].latitude - latitude, 2), Math.pow(data[i].longitude - longitude)) < radius) {
+                            result.push(data[i]);
+                        }
+                    }
+                    res.json({ error: false, data: result, message: 'Lấy thông tin thành công' });
+                }
+            });
+        }
+    });
 }

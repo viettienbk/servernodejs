@@ -50,4 +50,27 @@ module.exports = function(app) {
             }
         });
     });
+
+    //  add favorite
+    app.post('/users/favorite', function(req, res) {
+        var id_user = req.body.id_user;
+        var id_biker = req.body.id_biker;
+        var is_favorite = req.body.is_favorite;
+
+        if (id_user === undefined || id_biker === undefined || is_favorite === undefined) {
+            res.json({ error: true, message: 'Thiếu tham số' });
+        } else {
+            Favorite.create({
+                id_user: id_user,
+                id_biker: id_biker,
+                is_favorite: parseInt(is_favorite)
+            }, function(err, data) {
+                if (err) {
+                    res.json({ error: true, message: 'Thêm thông tin bị lỗi' });
+                } else {
+                    res.json({ error: false, message: 'Thêm thông tin thành công' });
+                }
+            });
+        }
+    });
 }
