@@ -31,7 +31,7 @@ module.exports = function(app) {
     });
 
     //  change password
-    app.put('/users/change-pass', function(req, res) {
+    app.post('/users/change-pass', function(req, res) {
         var id = req.body.id_user;
         var password = req.body.new_pass;
 
@@ -53,7 +53,7 @@ module.exports = function(app) {
     });
 
     //  update coordinate biker
-    app.put('/users/update/coordinate', function(req, res) {
+    app.post('/users/update/coordinate', function(req, res) {
         var id = req.body.id_user;
         var latitude = req.body.latitude;
         var longitude = req.body.longitude;
@@ -78,7 +78,7 @@ module.exports = function(app) {
     });
 
     //  update user by id
-    app.put('/users/update/profile', function(req, res) {
+    app.post('/users/update/profile', function(req, res) {
         var id = req.body.id_user;
         var fullname = req.body.full_name;
         var numberphone = req.body.number_phone;
