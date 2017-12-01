@@ -4,7 +4,6 @@
   "description": "this is nodejs server",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js",
     "start": "node app.js"
   },
   "repository": {
