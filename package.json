@@ -4,7 +4,7 @@
   "description": "this is nodejs server",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon app.js"
+    "test": "node app.js"
   },
   "repository": {
     "type": "git",
